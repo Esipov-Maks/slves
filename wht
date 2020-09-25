@@ -1,53 +1,42 @@
-#1г золота = 2500 руб, 1 кг = 2500000 руб
-#пл-ть золота = 19,3 г/см^3
 #ВСЕ ВЕЛЕЧИНЫ ПРИВЕДЕНЫ В Г/СМ^3; Г; CM
+
+
 print('Определение стоимости бруска')
 
 metall = input('Введите название металла:\n Gold\n Silver\n Platinum\n')
-d = float(input('Введите длинну бруска'))
-sh = float(input('Введите ширину бруска'))
-v = float(input('Введите высоту бруска'))
+d = float(input('Введите длинну бруска\n'))
+sh = float(input('Введите ширину бруска\n'))
+v = float(input('Введите высоту бруска\n'))
 
-V = d * sh * v
-print('Объем равен: ' + str(V))
 
 class Brusok :
-    def __init__(self, d, sh, v, metall, V, S) :
+    def __init__(self, d, sh, v, metall) :
         self.d = d
         self.sh = sh
         self.v = v
         self.metall = metall
-        self.V = V
-        self.S = S
         if metall == 'Gold' :
             self.p = 19.3
+            self.lS = 2500
+            self.S = (19.3 / (d * sh * v)) * 2500
         elif metall == 'Silver' :
             self.p = 10.5
+            self.lS = 110
+            self.S = (10.5 / (d * sh * v)) * 110
         else :
             self.p = 21.5
+            self.lS = 6500
+            self.S = (21.5 / (d * sh * v)) * 6500
+    def check(self):
+        return self.S
+
+Gold = Brusok(d, sh, v, 'Gold')
+Silver = Brusok(d, sh, v, 'Silver')
+Platinum = Brusok(d, sh, v, 'Platinum')
 
 if metall == 'Gold' :
-    p = 19.3
-    lS = 2500
+    print('Стоимость такого бруска золота: ' + str(Gold.check()))
 elif metall == 'Silver' :
-    p = 10.5
-    lS = 110
+    print('Стоимость такого бруска серебра :' + str(Silver.check()))
 else :
-    p = 21.5
-    lS = 6500
-
-m = p / V
-print('Масса равна:' + str(m))
-
-S = m * lS
-
-Gold = Brusok(d, sh, v, 'Gold', V, S)
-Silver = Brusok(d, sh, v, 'Silver', V, S)
-Platinum = Brusok(d, sh, v, 'Platinum', V, S)
-
-if metall == 'Gold' :
-    print('Стоимость золотого бруска' + str(Gold.S))
-elif metall == 'Silver' :
-    print('Стоимость серебрянного бруска' + str(Silver.S))
-else :
-    print('Стоимость платиного бруска' + str(Platinum.S))
+    print('Стоимость такого бруска платины: ' + str(Platinum.check()))
