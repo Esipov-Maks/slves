@@ -10,29 +10,22 @@ v = float(input('Введите высоту бруска\n'))
 
 
 class Brusok :
-    def __init__(self, d, sh, v, metall) :
+    def __init__(self, d, sh, v) :
         self.d = d
         self.sh = sh
         self.v = v
-        self.metall = metall
+    def check(self):
         if metall == 'Gold' :
-            self.p = 19.3
-            self.lS = 2500
             self.S = (19.3 / (d * sh * v)) * 2500
         elif metall == 'Silver' :
-            self.p = 10.5
-            self.lS = 110
             self.S = (10.5 / (d * sh * v)) * 110
         else :
-            self.p = 21.5
-            self.lS = 6500
             self.S = (21.5 / (d * sh * v)) * 6500
-    def check(self):
         return self.S
 
-Gold = Brusok(d, sh, v, 'Gold')
-Silver = Brusok(d, sh, v, 'Silver')
-Platinum = Brusok(d, sh, v, 'Platinum')
+Gold = Brusok(d, sh, v)
+Silver = Brusok(d, sh, v)
+Platinum = Brusok(d, sh, v)
 
 if metall == 'Gold' :
     print('Стоимость такого бруска золота: ' + str(Gold.check()))
